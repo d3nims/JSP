@@ -1,7 +1,10 @@
-package com.sbs.board;
-
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,6 +24,45 @@ public class TestServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer = response.getWriter();
 		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/t1?serverTimezone=UTC";
+			String user = "sbsst";
+			String pass = "";
+			
+			Connection conn = DriverManager.getConnection(url,user,pass);
+			
+			Statement stmt = conn.createStatement();
+			String sql = "select * from article";
+			
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			List<Article> articles = new ArrayList<>();
+			
+			while(rs.next()) {
+				String title = rs.getString("title");
+				String body = rs.getString("body");
+				
+				Article aritlce = new Article();
+			}
+			
+			
+		} catch(ClassNotFoundException e1) {
+			System.out.println("클래스를 찾지 못했습니다.");
+		} catch(SQLException e2) {
+			System.out.println("SQL Error.");
+		} finally {
+			try{
+				conn.close();
+			} catch(SQLException) {
+				
+			}
+		}
+		
+		
+		
+		
+		
 		String val1 = request.getParameter("key1");
 		String val2 = request.getParameter("key2");
 		String val3 = request.getParameter("key3");
@@ -31,7 +73,7 @@ public class TestServlet extends HttpServlet {
 		writer.println("<h1>" + val3 + "</h1>");
 		
 		// jsp 파일로 데이터 보내기
-		if()
+		
 		request.setAttribute("num1", val1);
 		request.setAttribute("num2", val2);
 		request.setAttribute("num3", val3);
