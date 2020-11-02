@@ -1,0 +1,47 @@
+DROP DATABASE IF EXISTS test1;
+
+CREATE DATABASE test1;
+
+USE test1;
+
+CREATE TABLE `member` (
+id INT(5) PRIMARY KEY AUTO_INCREMENT,
+loginId CHAR(200),
+loginPw CHAR(200),
+nickname CHAR(200),
+regDate DATETIME NOT NULL
+);
+
+INSERT INTO `member`
+SET loginId = 'user1',
+loginPw = 'pass1',
+nickname = 'name1',
+regDate = NOW();
+
+INSERT INTO `member`
+SET loginId = 'user2',
+loginPw = 'pass2',
+nickname = 'name2',
+regDate = NOW();
+
+INSERT INTO `member`
+SET loginId = 'user3',
+loginPw = 'pass3',
+nickname = 'name3',
+regDate = NOW();
+
+INSERT INTO `member`
+SET loginId = 'user4',
+loginPw = 'pass4',
+nickname = 'name4',
+regDate = NOW();
+
+INSERT INTO `member`
+SET loginId = 'user5',
+loginPw = 'pass5',
+nickname = 'name5',
+regDate = NOW();
+
+SELECT * FROM `member`;
+
+INSERT INTO article SET title = 'a', `body` = 'b';
