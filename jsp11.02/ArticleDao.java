@@ -16,14 +16,14 @@ public class ArticleDao {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/test1?serverTimezone=UTC"; // 어떤 db서버
+			String url = "jdbc:mysql://localhost:3306/test2?serverTimezone=UTC"; // 어떤 db서버
 			String user = "root";
-			String pass = "";
+			String pass = "7119";
 			
 			conn = DriverManager.getConnection(url, user, pass);
 			
 			Statement stmt = conn.createStatement();
-			String sql = "select * from article";
+			String sql = "select * from `member`";
 			
 			ResultSet rs = stmt.executeQuery(sql);
 			
@@ -64,16 +64,16 @@ public class ArticleDao {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/test1?serverTimezone=UTC"; // 어떤 db서버
+			String url = "jdbc:mysql://localhost:3306/test2?serverTimezone=UTC"; // 어떤 db서버
 			String user = "root";
-			String pass = "";
+			String pass = "7119";
 			
 			conn = DriverManager.getConnection(url, user, pass);
 			
 			Statement stmt = conn.createStatement();
 			
 			for(int i = 0; i < ids.length; i++) {
-				String sql = "delete from article where id = " + ids[i];
+				String sql = "delete from `member` where id = " + ids[i];
 				System.out.println(sql);
 				stmt.executeUpdate(sql);
 			}
@@ -97,9 +97,9 @@ public class ArticleDao {
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/test1?serverTimezone=UTC"; // 어떤 db서버
+			String url = "jdbc:mysql://localhost:3306/test2?serverTimezone=UTC"; // 어떤 db서버
 			String user = "root";
-			String pass = "";
+			String pass = "7119";
 			
 			conn = DriverManager.getConnection(url, user, pass);
 			
