@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/TestServlet")
 public class TestServlet extends HttpServlet {
 	ArticleDao dao = new ArticleDao();
+	MyBatis my = new MyBatis();
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -58,13 +59,8 @@ public class TestServlet extends HttpServlet {
 		} else if(action.equals("list")) {
 			
 			
+			req.setAttribute("articles", my.getAllArticles());
 			
-			req.setAttribute("test", "el test!!!");
-			req.setAttribute("articles", dao.getAllArticles());
-			
-			for(Article aa : dao.getAllArticles()) {
-				
-			}
 			
 			RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/list.jsp");
 			rd.forward(req, response);
@@ -76,8 +72,15 @@ public class TestServlet extends HttpServlet {
 			rd.forward(req, response);
 		} else if(action.equals("my")) {
 			MyBatis mb = new MyBatis();
-			mb.getAllArticles();
+			mb.getAllArticles();	
+		} else if(action.equals("read")) {
+			int id = Integer.parseInt(req.getParameter("id"));
+			my.getArticleById(id);
+		} else if(action.equals("doAdd")) {
+			String title = req.getParameter("title");
+			String body = req.getParameter("body");
 			
+			my.insertArticle(title,body);
 		}
 	}
 	
