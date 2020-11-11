@@ -4,22 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.sbs.board.mapper.ArticleMapper">
-  <select id="getAllArticles" resultType="com.sbs.board.Article">
+  <select id="getAllArticles" resultType="com.sbs.board.article.dao.Article">
     select * from article
   </select>
   
-  <select id="getArticleById" resultType="com.sbs.board.Article">
-    select * from article where id = #{id}
+  <select id="getArticleById" resultType="com.sbs.board.article.dao.Article">
+    select * from article where id = #{id} 
   </select>
   
-  
   <insert id="insertArticle">
-  INSERT INTO article SET title = #{title}, body = #{body}
+  	INSERT INTO article SET title = #{title}, body = #{body}
   </insert>
   
-  <insert id="insertArticle2" parameterType="com.sbs.board.Article">
-  INSERT INTO article SET title = #{title}, body = #{body}
+  <insert id="insertArticle2" parameterType="com.sbs.board.article.dao.Article">
+  	INSERT INTO article SET title = #{title}, body = #{body}
   </insert>
-  
   
 </mapper>
